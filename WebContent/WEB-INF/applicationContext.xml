@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://www.springframework.org/schema/beans" 
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" 
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+        http://www.springframework.org/schema/beans/spring-beans-4.2.xsd 
+        http://www.springframework.org/schema/context 
+        http://www.springframework.org/schema/context/spring-context-4.2.xsd 
+        http://www.springframework.org/schema/aop 
+        http://www.springframework.org/schema/aop/spring-aop-4.2.xsd 
+        http://www.springframework.org/schema/tx 
+        http://www.springframework.org/schema/tx/spring-tx-4.2.xsd ">
+	<context:component-scan base-package="com.myblog" />
+	<!-- 配置数据源 -->
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+		<property name="driverClass" value="com.mysql.jdbc.Driver"/>
+	
+		<property name="jdbcUrl" value="jdbc:mysql://www.sunlj.com/henuonline?Unicode=true&amp;characterEncoding=utf8"/>
+		<property name="user" value="root"/>
+		<property name="password" value="thm211633"/>
+		<property name="minPoolSize">
+			<value>10</value>
+		</property>
+	</bean>
+	
+	<!-- 配置SessionFactory -->
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"></property>
+		<property name="annotatedClasses">
+			<list>
+				<value>com.henuonline.domain.User</value>
+				
+			</list>
+		</property>
+		<!-- 配置Hibernate相关属性 -->
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+				<prop key="show_sql">true</prop>
+				<prop key="hibernate.hbm2ddl.auto">create</prop>
+				
+			</props>
+		</property>
+	</bean>
+	
+	<!-- 声明Hibernate事务管理器 -->
+	<bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<tx:annotation-driven transaction-manager="transactionManager"/>
+	<!-- 声明事务拦截器 -->
+	<bean id="transactionInterceptor" class="org.springframework.transaction.interceptor.TransactionInterceptor">
+		<property name="transactionManager" ref="transactionManager"/>
+		<property name="transactionAttributes">
+			<props>
+			<!-- 设置事务管理策略 -->
+				<prop key="get*">PROPAGATION_REQUIRED</prop>
+				<prop key="*">PROPAGATION_REQUIRED</prop>
+				<prop key="saverr">PROPAGATION_REQUIRED</prop>
+			</props>
+		</property>
+	</bean>
+	<!-- 声明代理创建 -->
+	<bean id="ProxyCreator" class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator">
+		<!-- 指定需生成业务代理的bean -->
+		<property name="beanNames">
+			<list>
+				<value>articleService</value>
+			</list>
+		</property>
+		<!-- 调用事务拦截器 -->
+		<property name="interceptorNames">
+			<list>
+			    <value>transactionInterceptor</value>
+			</list>
+		</property>
+	</bean>
+	
+</beans>
