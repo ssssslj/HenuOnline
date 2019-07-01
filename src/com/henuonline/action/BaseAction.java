@@ -6,8 +6,8 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.henuonline.service.NewsHotsService;
-import com.henuonline.service.NewsHotsServiceImpl;
+import com.henuonline.service.NewsService;
+import com.henuonline.service.NewsServiceImpl;
 import com.henuonline.service.UserService;
 import com.opensymphony.xwork2.ActionContext;
 
@@ -15,9 +15,9 @@ import com.opensymphony.xwork2.ActionContext;
 public class BaseAction {
 	protected Map<String,Object> session;
 	protected Map<String, Object> application;
-	protected InputStream hint;
+	protected InputStream hint;//返回提示
 	
-	protected NewsHotsService newsHotsService;
+	protected NewsService newsHotsService;
 	@Autowired
 	protected UserService userService;
 	
@@ -35,10 +35,10 @@ public class BaseAction {
 		this.application = application;
 	}
 	
-	public NewsHotsService getNewsHotsService() {
+	public NewsService getNewsHotsService() {
 		return newsHotsService;
 	}
-	public void setNewsHotsService(NewsHotsService newsHotsService) {
+	public void setNewsHotsService(NewsService newsHotsService) {
 		this.newsHotsService = newsHotsService;
 	}
 	public UserService getUserService() {

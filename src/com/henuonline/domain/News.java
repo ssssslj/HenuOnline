@@ -1,18 +1,10 @@
 package com.henuonline.domain;
 
-import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
 
-import org.springframework.stereotype.Component;
-
-//热点新闻
-@Entity
-@Table(name="news_hots")
-@Component
-public class News_Hots extends News{
+public class News {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
@@ -72,6 +64,5 @@ public class News_Hots extends News{
 	}
 	public void setStick(boolean isStick) {
 		this.isStick = isStick;
-	}	
-	
+	}
 }

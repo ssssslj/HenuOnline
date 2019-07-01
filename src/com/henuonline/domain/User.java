@@ -1,6 +1,8 @@
 package com.henuonline.domain;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -12,6 +14,8 @@ import org.springframework.stereotype.Component;
 public class User {
 	
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private int id;
 	private int phonenumber;//电话号码
 	private String username;
 	private String password;

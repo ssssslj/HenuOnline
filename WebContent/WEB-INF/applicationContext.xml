@@ -32,7 +32,9 @@
 			<list>
 				<value>com.henuonline.domain.User</value>
 				<value>com.henuonline.domain.News_Hots</value>
-				
+				<value>com.henuonline.domain.News_School</value>
+				<value>com.henuonline.domain.News_College</value>
+				<value>com.henuonline.domain.News_Others</value>
 			</list>
 		</property>
 		<!-- 配置Hibernate相关属性 -->
@@ -40,7 +42,7 @@
 			<props>
 				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
 				<prop key="show_sql">true</prop>
-				<prop key="hibernate.hbm2ddl.auto">create</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
 				
 			</props>
 		</property>

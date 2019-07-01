@@ -8,11 +8,11 @@ import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
 
-//热点新闻
+//其他新闻
 @Entity
-@Table(name="news_hots")
+@Table(name="news_others")
 @Component
-public class News_Hots extends News{
+public class News_Others extends News{
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
@@ -73,5 +73,4 @@ public class News_Hots extends News{
 	public void setStick(boolean isStick) {
 		this.isStick = isStick;
 	}	
-	
 }
