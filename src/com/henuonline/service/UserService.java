@@ -2,6 +2,8 @@ package com.henuonline.service;
 
 import org.springframework.stereotype.Component;
 
+import com.henuonline.domain.PageBean;
+import com.henuonline.domain.Study;
 import com.henuonline.domain.User;
 @Component
 public interface UserService {
@@ -15,5 +17,6 @@ public interface UserService {
 	public boolean updatePhone(int id,int newphone);
 	//获取用户信息
 	public User showUser(int id);
+
 	
 }

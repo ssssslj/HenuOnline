@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 
 import com.henuonline.service.NewsService;
 import com.henuonline.service.NewsServiceImpl;
+import com.henuonline.service.StudyService;
 import com.henuonline.service.UserService;
 import com.opensymphony.xwork2.ActionContext;
 
@@ -28,6 +29,8 @@ public class BaseAction {
 	protected NewsService newsService;
 	@Autowired
 	protected UserService userService;
+	@Autowired
+	protected StudyService studyService;
 	
     public Map<String, Object> getSession() {
 		
@@ -59,5 +62,13 @@ public class BaseAction {
 	}
 	public void setHint(InputStream hint) {
 		this.hint = hint;
-	}   
+	}
+	public StudyService getStudyService() {
+		return studyService;
+	}
+	public void setStudyService(StudyService studyService) {
+		this.studyService = studyService;
+	}
+	 
+	
 }

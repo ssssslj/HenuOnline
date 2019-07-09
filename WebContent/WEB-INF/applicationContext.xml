@@ -32,6 +32,7 @@
 			<list>
 				<value>com.henuonline.domain.User</value>
 				<value>com.henuonline.domain.News</value>
+				<value>com.henuonline.domain.Study</value>
 			</list>
 		</property>
 		<!-- 配置Hibernate相关属性 -->
