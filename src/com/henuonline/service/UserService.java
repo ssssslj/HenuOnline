@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 import com.henuonline.domain.User;
 @Component
 public interface UserService {
-	//注册
+    //注册
 	public boolean register(User user);
 	//登陆
 	public boolean login(int phonenumber,String password);

@@ -1,9 +1,17 @@
 package com.henuonline.domain;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Transient;
 
+import org.springframework.stereotype.Component;
+
+@Entity
+@Table(name="news")
+@Component
 public class News {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -13,9 +21,15 @@ public class News {
 	private String date;
 	private String content;
 	private String imgUrl;
-	private boolean isStick;
+	private boolean isStick;//置顶
 	private int type;
-	
+	private int view;//浏览量
+	public int getView() {
+		return view;
+	}
+	public void setView(int view) {
+		this.view = view;
+	}
 	public int getId() {
 		return id;
 	}

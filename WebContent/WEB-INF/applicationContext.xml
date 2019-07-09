@@ -31,10 +31,7 @@
 		<property name="annotatedClasses">
 			<list>
 				<value>com.henuonline.domain.User</value>
-				<value>com.henuonline.domain.News_Hots</value>
-				<value>com.henuonline.domain.News_School</value>
-				<value>com.henuonline.domain.News_College</value>
-				<value>com.henuonline.domain.News_Others</value>
+				<value>com.henuonline.domain.News</value>
 			</list>
 		</property>
 		<!-- 配置Hibernate相关属性 -->
@@ -46,6 +43,7 @@
 				
 			</props>
 		</property>
+		
 	</bean>
 	
 	<!-- 声明Hibernate事务管理器 -->
@@ -70,7 +68,7 @@
 		<!-- 指定需生成业务代理的bean -->
 		<property name="beanNames">
 			<list>
-				<value>articleService</value>
+				<value>newsService</value>
 			</list>
 		</property>
 		<!-- 调用事务拦截器 -->

@@ -52,10 +52,13 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 	@Override
 	public T get(Class<T> entityClazz, int id) {
 		// TODO Auto-generated method stub
+		System.out.println(id+"1");
+		System.out.println(entityClazz.getSimpleName());
 		try {
-			return (T)this.sessionFactory.getCurrentSession().get(entityClazz.getSimpleName(), id);
+			return (T)this.sessionFactory.getCurrentSession().get(entityClazz, id);
 		} catch (Exception e) {
 			// TODO: handle exception
+			e.printStackTrace();
 			return null;
 		}
 		

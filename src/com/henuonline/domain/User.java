@@ -22,6 +22,13 @@ public class User {
 	private String name;
 	private int age;
 	private int stuid;//学号
+	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
 	public int getPhonenumber() {
 		return phonenumber;
 	}

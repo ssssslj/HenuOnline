@@ -1,6 +1,7 @@
 package com.henuonline.action;
 
 import java.io.StringBufferInputStream;
+import java.util.HashMap;
 
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.ParentPackage;
@@ -107,12 +108,13 @@ public class UserAction extends BaseAction{
 		}
 	}
 	//获取用户信息
-	@Action(value="user_showUser",results={@Result(name="success",type="json",params={"root","userJson"}),
-			   @Result(name="error",type="json",params={"root","userJson"})})
+	@Action(value="user_showUser",results={@Result(name="success",type="json",params={"root","dataMap"}),
+			   @Result(name="error",type="json",params={"root","false"})})
 	public String showUser() {
-		User user1 = userService.showUser(id);
-		if(user1 != null) {
-			JSONObject userJson = JSONObject.fromObject(user1);
+		User user = userService.showUser(id);
+		if(user != null) {
+			this.dataMap = new HashMap<String,Object>();
+			dataMap.put("user", user);
 			return ActionSupport.SUCCESS;
 		}else {
 			return ActionSupport.ERROR;
